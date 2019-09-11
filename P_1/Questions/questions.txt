@@ -1,0 +1,2 @@
+Questions:
+    Si los iteradores no necesitan conocer el tipo de dato de un vector para recorrerlo, por qué se define un iterador ustilizando la clase vector<int>. Ya le estamos dando a conocer el tipo de dato para lo que lo vamos a usar, ¿no?

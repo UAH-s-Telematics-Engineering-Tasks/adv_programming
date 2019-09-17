@@ -1,27 +1,35 @@
-#include "../inc/MemoryManager.h"
 #include "../inc/funciones.h"
 
 int main(void) {
-  {
     mtx matrix = {0, 0, NULL};
     int option = -1;
+    bool read_error;
 
     while (true) {
-      std::cout << "1. Build matrix\n2. Fill matrix\n3. Show matrix\n4. Delete matrix\n5. Quit\nOption: ";
+      std::cout << "1. Build matrix\n2. Fill matrix\n3. Show matrix\n4. Delete matrix\n5. Quit\n";
 
-      do {
-        std::cin >> option;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      } while (std::cin.fail() || option > 5 || option < 1);
+      while ((option = read_int((char*)"Option: ")) > 5 || option < 1);
+
+      /*do {
+        option = read_int("Option\n");
+      } while (option > 5 || option < 1);*/
 
       switch (option) {
         case 1:
           if (!matrix.mx) {
-            std::cout << "Input the # of rows and colums (# #): ";
             do {
-              std::cin >> matrix.rows >> matrix.cols; //This is the same as cin >> rows; cin >> cols;
+              read_error = false;
+              std::cout << "Input the # of rows and colums (# #): ";
+              if (!(std::cin >> matrix.rows)) {
+                std::cin.clear();
+                read_error = true;
+              }
+              if (!(std::cin >> matrix.cols)) {
+                std::cin.clear();
+                read_error = true;
+              }
               std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }  while (std::cin.fail() || matrix.rows <= 0 || matrix.cols <= 0);
+            }  while (read_error || matrix.rows <= 0 || matrix.cols <= 0);
             matrix.mx = build_matrix(matrix.rows, matrix.cols);
           }
           else
@@ -52,6 +60,4 @@ int main(void) {
           return 0;
       }
     }
-  }
-  MemoryManager::dumpMemoryLeaks();
 }

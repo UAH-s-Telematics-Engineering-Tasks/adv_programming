@@ -28,6 +28,7 @@ void assign_date(int d, int m, int y) {
   if (!valid_date(d, m, y)) {
     //ERROR -> Assign a default!
     day = 28; month = 4; year = 9;  //Ortega's B-day!
+    std::cout << "Error!\n";
   }
   else {
     day = d; month = m; year = y;

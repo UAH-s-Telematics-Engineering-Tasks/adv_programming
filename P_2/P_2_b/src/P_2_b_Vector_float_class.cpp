@@ -1,0 +1,29 @@
+#include "../inc/P_2_b_Vector_float_class.h"
+#include "../inc/Library_includes.h"
+#include "../inc/Utils.h"
+
+void Vector_float_class::populate(void) {
+  if (mtx.empty()) {
+    std::cout << "We have an empty matrix... Create it first!\n";
+    return;
+  }
+  for (long unsigned int i = 0; i < mtx.size(); i++)
+    for (long unsigned int k = 0; k < mtx.at(i).size(); k++) {
+      std::cout << "Data for cell [" << i << "][" << k << "]: ";
+      mtx.at(i).at(k) = read_float((char*)"");
+    }
+}
+
+void Vector_float_class::show_mtx(void) {
+  if (mtx.empty()) {
+    std::cout << "We have an empty matrix... Create it first!\n";
+    return;
+  }
+  for (long unsigned int i = 0; i < mtx.size(); i++) {
+    std::cout << "Row " << i << ": ";
+    for (long unsigned int k = 0; k < mtx.at(i).size(); k++)
+      std::cout << mtx.at(i).at(k) << ' '; //Tricky but insightful!. We have an extra space but we won't see it!
+    std::cout << '\n';
+  }
+  std::getchar(); //Pause for visualization!
+}

@@ -1,4 +1,4 @@
-#include "../inc/P_2_a_C_matx_float_class.h"
+#include "../inc/P_2_b_Vector_float_class.h"
 #include "../inc/Library_includes.h"
 #include "../inc/Utils.h"
 
@@ -7,12 +7,11 @@ const char* menu[] = {
   "2. Build 2D matrix",
   "3. Populate matrix",
   "4. Show matrix",
-  "5. Delete matrix",
-  "6. Quit"
+  "5. Quit"
 };
 
 int main(void) {
-  C_matx_float_class matrix;
+  Vector_float_class matrix;
 
   while(true)
     switch(show_menu(menu, sizeof(menu) / sizeof(char*))) {
@@ -33,12 +32,6 @@ int main(void) {
         break;
 
       case 5:
-        matrix.deallocate();
-        break;
-
-      case 6:
-        if (matrix.exists())
-          matrix.deallocate();
         std::cout << "Bye!\n";
         return 0;
     }

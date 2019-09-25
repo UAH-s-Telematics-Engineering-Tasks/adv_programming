@@ -35,10 +35,6 @@ void C_matx_float_class::create_2d_mtx(int rows, int cols) {
         mtx[k][i] = 0;
 }
 
-void C_matx_float_class::create_1d_mtx(int cols) {
-  create_2d_mtx(1, cols);
-}
-
 void C_matx_float_class::populate(void) {
   if (!mtx) {
     std::cout << "We have an empty matrix!\n";

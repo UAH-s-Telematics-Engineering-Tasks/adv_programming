@@ -37,8 +37,8 @@ int main(void) {
         break;
 
       case 6:
-        if (matrix.exists())
-          matrix.deallocate();
+        /*if (matrix.exists())
+          matrix.deallocate();*/
         std::cout << "Bye!\n";
         return 0;
     }

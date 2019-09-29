@@ -65,13 +65,13 @@ void C_matx_float_class::show_mtx(void) {
 }
 
 void C_matx_float_class::deallocate(void) {
-  if (!mtx) {
-    std::cout << "We have an empty matrix!\n";
+  if (!mtx) // We have an empty matrix!!
     return;
-  }
+
   for (int i = 0; i < n_rows; i++)
     delete[] mtx[i];
 
   delete[] mtx;
-  mtx = NULL;
+
+  C_matx_float_class::initialize();
 }

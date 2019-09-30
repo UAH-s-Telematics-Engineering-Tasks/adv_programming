@@ -54,8 +54,9 @@ int main(void) {
           break;
 
         case 5:
-          if (matrix.mx)
-            free_matrix(&matrix);
+          /*if (matrix.mx)
+            free_matrix(&matrix);*/
+          std::cout << sizeof(matrix.mx) << '\n';
           return 0;
       }
     }

@@ -7,9 +7,12 @@ std::vector<std::vector<float>> build_matrix(int n_rows, int n_cols) {
 }
 
 void input_data(std::vector<std::vector<float>>& matrix) {
+  std::cout << "Input all the data please: ";
   for (int i = 0; i < matrix.size(); i++)
     for (int k = 0; k < matrix[i].size(); k++)
-      (matrix.at(i)).at(k) = read_float(std::string("[") + std::to_string(i) + std::string("][") + std::to_string(k) + std::string("]: "));
+      //(matrix.at(i)).at(k) = read_float(std::string("[") + std::to_string(i) + std::string("][") + std::to_string(k) + std::string("]: "));
+      (matrix.at(i)).at(k) = read_float(std::string(""));
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   return;
 }
 
@@ -46,10 +49,10 @@ int read_int(char* prompt, bool greater_than, int limit) {
     err = false;
     if (!(std::cin >> ret)) {
       std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
       err = true;
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  } while(err || (greater_than? (ret < limit) : (ret > limit)));
+  } while(err || (greater_than? (ret <= limit) : (ret > limit)));
   return ret;
 }
 
@@ -62,8 +65,8 @@ float read_float(std::string prompt) {
     if (!(std::cin >> ret)) {
       std::cin.clear();
       err = true;
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   } while(err);
   return ret;
 }

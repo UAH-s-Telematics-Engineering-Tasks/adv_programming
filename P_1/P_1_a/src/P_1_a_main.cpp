@@ -10,10 +10,6 @@ int main(void) {
 
       while ((option = read_int((char*)"Option: ")) > 5 || option < 1);
 
-      /*do {
-        option = read_int("Option\n");
-      } while (option > 5 || option < 1);*/
-
       switch (option) {
         case 1:
           if (!matrix.mx) {
@@ -33,30 +29,33 @@ int main(void) {
             matrix.mx = build_matrix(matrix.rows, matrix.cols);
           }
           else
-            std::cout << "We already have a matrix!\n";
+            std::cout << "We already have a matrix, delete it first!\n";
           break;
 
         case 2:
           if (matrix.mx)
             input_data(&matrix);
+          else
+            std::cout << "We don't have a matrix yet...\n";
           break;
 
         case 3:
           if (matrix.mx)
             show_matrix(matrix);
+          else
+            std::cout << "We don't have a matrix yet...\n";
           break;
 
         case 4:
           if (matrix.mx)
             free_matrix(&matrix);
+          else
+            std::cout << "We don't have a matrix yet...\n";
           break;
 
         case 5:
           if (matrix.mx)
             free_matrix(&matrix);
-          std::cout << "Bye!\n";
-          if (!matrix.mx)
-            std::cout << "Freed correctly!\n";
           return 0;
       }
     }

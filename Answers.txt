@@ -1,0 +1,7 @@
+Practice 1.a:
+    After executing option 4 we are deallocating the memory we reserved for the matrix and making the overall pointer point to NULL to indicate said fact. The thing is that the memory locations we had been working with don't have to be empty and they will indeed keep the values we assigned to them. The thing is that the OS now sees them as free and thus rewritable space. The contents of the memory we just freed are no longer guaranteed to be the same as the ones we wrote, even if we read those locations just after deallocating it.
+
+Practice 1.b:
+    We don't need a function to deallocate the memory because everything is handled by the vector class itself, its easier for us!
+
+    As the assignment operator is capable of resizing the receiving object as needed we will just see how we have a "single" vector throughout the execution of the program that is being continuously changed!

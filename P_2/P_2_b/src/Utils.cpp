@@ -10,10 +10,10 @@ int read_compare_int(char* prompt, bool greater_than, int limit) {
     err = false;
     if (!(std::cin >> ret)) {
       std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
       err = true;
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  } while(err || (greater_than? (ret < limit) : (ret > limit)));
+  } while(err || (greater_than? (ret <= limit) : (ret > limit)));
   return ret;
 }
 
@@ -40,9 +40,9 @@ float read_float(char* prompt) {
     err = false;
     if (!(std::cin >> ret)) {
       std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
       err = true;
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   } while(err);
   return ret;
 }

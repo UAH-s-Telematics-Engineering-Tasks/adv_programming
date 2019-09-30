@@ -13,15 +13,25 @@ const char* menu[] = {
 
 int main(void) {
   C_matx_float_class matrix;
+  int n_r, n_c;
 
   while(true)
     switch(show_menu(menu, sizeof(menu) / sizeof(char*))) {
       case 1:
-        matrix.create_1d_mtx(read_compare_int((char*) "Number of cols: ", true, 0));
+        if (!matrix.exists())
+          matrix.create_1d_mtx(read_compare_int((char*) "Number of cols: ", true, 0));
         break;
 
       case 2:
-        matrix.create_2d_mtx(read_compare_int((char*) "Number of rows: ", true, 0), read_compare_int((char*) "Number of cols: ", true, 0));
+        if (!matrix.exists()) {
+          //matrix.create_2d_mtx(read_compare_int((char*) "Number of rows: ", true, 0), read_compare_int((char*) "Number of cols: ", true, 0));
+          std::cout << "Input the number of rows and cols: ";
+          //Declaring them here makes them go out of scope and disappear!
+          n_r = read_compare_int((char*)"", true, 0);
+          n_c = read_compare_int((char*)"", true, 0);
+          matrix.create_2d_mtx(n_r, n_c);
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tidy the input buffer!
+        }
         break;
 
       case 3:

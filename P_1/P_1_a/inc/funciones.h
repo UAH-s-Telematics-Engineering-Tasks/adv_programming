@@ -1,6 +1,7 @@
 #include <iostream> //Include cin and cout
 #include <new>
 #include <limits> //For stream limits!
+#include <string>
 
 struct mtx {
   int rows, cols;

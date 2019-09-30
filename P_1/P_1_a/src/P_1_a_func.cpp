@@ -33,20 +33,13 @@ float** build_matrix(int rows, int cols) {
 void input_data(mtx* mat) {
   float tmp;
   bool err;
+  std::cout << "Please introduce the data: ";
   for (int i = 0; i < mat->rows; i++)
     for (int k = 0; k < mat->cols; k++) {
-        std::cout << "Data for cell [" << i << "][" << k << "]: ";
-      /*do {
-        err = false;
-        std::cout << "Data for cell [" << i << "][" << k << "]: ";
-        if (!(std::cin >> tmp)) {
-          std::cin.clear();
-          err = true;
-        }
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Empty the buffer!
-      } while (err); //If we read an incorrect data type this will be TRUE!*/
-      (mat->mx)[i][k] = read_float((char*)"");
+        //std::cout << "Data for cell [" << i << "][" << k << "]: ";
+        (mat->mx)[i][k] = read_float((char*)"");
     }
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Tidy up the buffer!
   return;
 }
 
@@ -79,10 +72,11 @@ int read_int(char* prompt) {
     err = false;
     if (!(std::cin >> ret)) {
       std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
       err = true;
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   } while(err);
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   return ret;
 }
 
@@ -95,8 +89,8 @@ float read_float(char* prompt) {
     if (!(std::cin >> ret)) {
       std::cin.clear();
       err = true;
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
     }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   } while(err);
   return ret;
 }

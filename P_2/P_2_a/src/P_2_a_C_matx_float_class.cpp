@@ -3,10 +3,6 @@
 #include "../inc/Utils.h"
 
 void C_matx_float_class::create_2d_mtx(int rows, int cols) {
-  if (mtx) {
-    std::cout << "We already have a matrix. Delete it first!\n";
-    return;
-  }
     int i;
     n_rows = rows; n_cols = cols;
     bool success = false;
@@ -40,11 +36,11 @@ void C_matx_float_class::populate(void) {
     std::cout << "We have an empty matrix!\n";
     return;
   }
+  std::cout << "Input all the required data: ";
   for (int i = 0; i < n_rows; i++)
-    for (int k = 0; k < n_cols; k++) {
-      std::cout << "Data for cell [" << i << "][" << k << "]: ";
+    for (int k = 0; k < n_cols; k++)
       mtx[i][k] = read_float((char*)"");
-  }
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void C_matx_float_class::show_mtx(void) {
@@ -61,7 +57,7 @@ void C_matx_float_class::show_mtx(void) {
 
     std::cout << '\n';
   }
-  std::getchar();
+  std::getchar(); //Pause for reading!
 }
 
 void C_matx_float_class::deallocate(void) {

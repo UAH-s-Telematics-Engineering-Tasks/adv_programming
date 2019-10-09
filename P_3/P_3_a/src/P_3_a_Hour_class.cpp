@@ -8,10 +8,13 @@ bool Hour_class::set_time_format(char* format_string) {
   if (!format_string)
     return false;
 
-  if (!time_format)
-    deallocate_format();
+  deallocate_format();
 
-  time_format = new char[strlen(format_string) + 1]; // Don't forget the trailing '\0'!
+  if (!(time_format = new (nothrow) char[strlen(format_string) + 1])) { // Don't forget the trailing '\0'!
+    deallocate_format();
+    return false;
+  }
+
 
   for (int i = 0; i < strlen(format_string) + 1; i++)
     time_format[i] = toupper(format_string[i]);
@@ -34,4 +37,27 @@ bool Hour_class::is_time_correct(void) {
     return hours > 11? false : true;
 
   return false;
+}
+
+bool Hour_class::set_time(int hours, int minutes, int seconds, char* format_string) {
+  return Hour_class::is_time_correct(hours, minutes, seconds) && Hour_class::set_time_format(format_string));
+}
+
+void Hour_class::get_time(int& target_hours, int& target_minutes, int& target_seconds, char* target_format) {
+  target_hours = hours;
+  target_minutes = minutes;
+  target_seconds = seconds;
+  if (!target_format && !time_format)
+    strcpy(target_format, time_format);
+}
+
+void Hour_class::deallocate_format(void) {
+  if (time_format) {
+    delete[] time_format;
+    time_format = NULL;
+  }
+}
+
+Hour_class::~Hour_class(void) {
+  deallocate_format();
 }

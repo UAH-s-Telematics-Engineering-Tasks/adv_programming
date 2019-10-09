@@ -52,9 +52,7 @@ bool Hour_class::set_time(int h, int m, int s, char* format_string) {
 }
 
 void Hour_class::get_time(int& target_hours, int& target_minutes, int& target_seconds, char* target_format) const {
-  target_hours = this->hours;
-  target_minutes = this->minutes;
-  target_seconds = this->seconds;
+  target_hours = this->hours; target_minutes = this->minutes; target_seconds = this->seconds;
   if (target_format && this->time_format)
     strcpy(target_format, this->time_format);
 }

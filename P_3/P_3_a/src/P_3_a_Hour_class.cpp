@@ -13,10 +13,9 @@ bool Hour_class::set_time_format(char* format_string) {
 
   deallocate_format();
 
-  if (!(this->time_format = new (std::nothrow) char[strlen(format_string) + 1])) { // Don't forget the trailing '\0'!
-    deallocate_format();
+  if (!(this->time_format = new (std::nothrow) char[strlen(format_string) + 1])) // Don't forget the trailing '\0'!
     return false;
-  }
+
   // Instead of writing a function we save time and call overhead
   for (size_t i = 0; i < strlen(format_string) + 1; i++) {
     this->time_format[i] = format_string[i];

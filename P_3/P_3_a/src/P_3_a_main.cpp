@@ -1,6 +1,9 @@
-#include <iostream>
+#include "../inc/Library_includes.h"
+#include "../inc/Utils.h"
+#include "../inc/P_3_a_Hour_class.h"
+#include "../inc/Aux_functions.h"
 
-#define STR_SIZE 15
+#define STR_SIZE 20
 
 const char* menu[] = {
   "1. Set the time",
@@ -11,16 +14,21 @@ const char* menu[] = {
 int main(void) {
   Hour_class time;
   char recipient_string[STR_SIZE];
-  int h = 0, m = 0, s = 0;
+  bool valid_time = false;
 
   while (true) {
     switch (show_menu(menu, sizeof(menu) / sizeof(char*))) {
       case 1:
-        time.set_time(read_int("Hours: "), read_int("Minutes"), read_int("Seconds"), read_C_string(recipient_string, sizeof(recipient_string)));
+        valid_time = time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_C_string(recipient_string, sizeof(recipient_string), "Time format: "));
         break;
 
       case 2:
-        time.get_time(h, m, s, recipient_string);
+        view_time(time);
+        if (valid_time)
+          std::cout << "Valid time!";
+        else
+          std::cout << "Wrong time...";
+        std::getchar();
         break;
 
       case 3:

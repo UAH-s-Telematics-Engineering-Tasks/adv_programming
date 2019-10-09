@@ -25,12 +25,15 @@ int show_menu(const char** options, int n_options) {
   for (int i = 0; i < n_options; i++)
     std::cout << options[i] << '\n';
 
-  while((option = read_int((char*)"Option: ")) < 0 || option > n_options);
+  while((option = read_int("Option: ")) < 0 || option > n_options);
 
   return option;
 }
 
-char* read_C_string(char* target_str, int max_size) {
-  std::cin.getline(target_str, max_size, '\n');
+char* read_C_string(char* target_str, int max_size, std::string prompt) {
+  std::cout << prompt;
+  if (target_str)
+    std::cin.getline(target_str, max_size, '\n');
+
   return target_str;
 }

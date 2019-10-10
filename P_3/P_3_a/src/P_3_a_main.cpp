@@ -3,7 +3,7 @@
 #include "../inc/P_3_a_Hour_class.h"
 #include "../inc/Aux_functions.h"
 
-#define STR_SIZE 20
+#define STR_SIZE 10
 
 const char* menu[] = {
   "1. Set the time",

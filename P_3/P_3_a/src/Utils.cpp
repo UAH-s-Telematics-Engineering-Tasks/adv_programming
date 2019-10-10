@@ -35,5 +35,12 @@ char* read_C_string(char* target_str, int max_size, std::string prompt) {
   if (target_str)
     std::cin.getline(target_str, max_size, '\n');
 
+  // If cin.getline() reaches the max_size limit it will set the failbit of the stream and we won't be able to perform successive reads with read_int()!
+  if(std::cin.fail()) {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  }
+
+
   return target_str;
 }

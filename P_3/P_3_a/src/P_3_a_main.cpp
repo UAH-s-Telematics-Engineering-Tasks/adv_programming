@@ -4,8 +4,6 @@
 #include "../inc/Aux_functions.h"
 #include "../inc/Constants.h"
 
-#define STR_SIZE 15
-
 const char* menu[] = {
   "1. Set the time",
   "2. View time",

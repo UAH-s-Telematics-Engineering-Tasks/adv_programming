@@ -1,8 +1,28 @@
 #include "../inc/Library_includes.h"
+#include "../inc/Utils.h"
 
 // We want to clean the buffer in every iteration so that data after a space is NOT used!
 
-int read_int(std::string prompt) {
+bool utils::C_utils::read_int(int& destination, std::string prompt) {
+  bool err;
+  do  {
+    std::cout << prompt;
+    std::cin >> destination;
+
+    err = false;
+    if (std::cin.eof())
+      return false;
+
+    if (std::cin.fail()) {
+      std::cin.clear();
+      err = true;
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  } while(err);
+  return true;
+}
+
+int utils::C_utils::read_int(std::string prompt) {
   int ret = 0;
   bool err;
   do  {
@@ -17,7 +37,7 @@ int read_int(std::string prompt) {
   return ret;
 }
 
-int show_menu(const char** options, int n_options) {
+int utils::C_utils::show_menu(const char** options, int n_options) {
   int option = -1;
 
   std::system("clear");
@@ -30,8 +50,9 @@ int show_menu(const char** options, int n_options) {
   return option;
 }
 
-char* read_C_string(char* target_str, int max_size, std::string prompt) {
-  // I've modified the prototype to be able to use this in function calls!
+char* utils::C_utils::read_C_string(char* target_str, int max_size, std::string prompt) {
+  if (!target_str)
+    return NULL;
   std::cout << prompt;
   if (target_str)
     std::cin.getline(target_str, max_size, '\n');

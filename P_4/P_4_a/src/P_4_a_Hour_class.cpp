@@ -5,15 +5,6 @@
 Hour_class::Hour_class(int h, int m, int s, const char* tf) : hours{h}, minutes{m}, seconds{s}, time_format{0} {
   std::cout << "Calling the regular constructor!\n";
   set_time_format(tf);
-  // We take advantage of the fact that to define an argument we must do the same with the following!
-  if (h && m && s) {
-    this->hours = h; this->minutes = m; this->seconds = s;
-  }
-  if (h && m) {
-    this->hours = h; this->minutes = m;
-  }
-  if (h)
-    this->hours = h;
 }
 
 Hour_class::Hour_class(const Hour_class& init_obj) : hours{init_obj.hours}, minutes{init_obj.minutes}, seconds{init_obj.seconds}, time_format{NULL} {
@@ -21,7 +12,7 @@ Hour_class::Hour_class(const Hour_class& init_obj) : hours{init_obj.hours}, minu
   set_time_format(init_obj.time_format);
 }
 
-Hour_class& Hour_class::operator = (const Hour_class& init_obj) {
+Hour_class& Hour_class::operator =(const Hour_class& init_obj) {
   // We can't compare init_obj and *this because one is const and the other isn't. We areonly comparing addresses in this way!
   // Note that if wee create an object with Hour_class time = existing_object the copy constructor will be called instead of the assignment operator! For the assignment to work both objects must exist. Kinda weird...
   if (&init_obj != this) {
@@ -90,7 +81,7 @@ void Hour_class::deallocate_format(void) {
 }
 
 Hour_class::~Hour_class(void) {
-  std::cout << "Calling the destructor!\n";
+  std::cout << "Calling the destructor!";
   std::getchar();
   deallocate_format();
 }

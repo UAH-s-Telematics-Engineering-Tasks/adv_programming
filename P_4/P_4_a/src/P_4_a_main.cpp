@@ -23,6 +23,7 @@ const char* sub_menu[] = {
 int main(void) {
   Hour_class* dynamic_time = NULL;
   bool stay_here;
+  char recipient_str[15];
 
   while (true) {
     stay_here = true;
@@ -38,25 +39,25 @@ int main(void) {
               }
             case 2:
               {
-                Hour_class local_time {5};
+                Hour_class local_time {utils::C_utils::read_int("Hours: ")};
                 view_time(local_time);
                 break;
               }
             case 3:
               {
-                Hour_class local_time {5, 5};
+                Hour_class local_time {utils::C_utils::read_int("Hours: "), utils::C_utils::read_int("Minutes: ")};
                 view_time(local_time);
                 break;
               }
             case 4:
               {
-                Hour_class local_time {5, 5, 5};
+                Hour_class local_time {utils::C_utils::read_int("Hours: "), utils::C_utils::read_int("Minutes: "), utils::C_utils::read_int("Seconds: ")};
                 view_time(local_time);
                 break;
               }
             case 5:
               {
-                Hour_class local_time {5, 5, 5, "AM"};
+                Hour_class local_time {utils::C_utils::read_int("Hours: "), utils::C_utils::read_int("Minutes: "), utils::C_utils::read_int("Seconds: "), utils::C_utils::read_C_string(recipient_str, sizeof(recipient_str), "Format: ")};
                 view_time(local_time);
                 break;
               }
@@ -68,7 +69,7 @@ int main(void) {
 
       case 2:
         if(!dynamic_time) {
-          dynamic_time = new (std::nothrow) Hour_class(5, 5, 5);
+          dynamic_time = new (std::nothrow) Hour_class(utils::C_utils::read_int("Hours: "), utils::C_utils::read_int("Minutes: "), utils::C_utils::read_int("Seconds: "), utils::C_utils::read_C_string(recipient_str, sizeof(recipient_str), "Format: "));
           view_time(*dynamic_time);
         }
         else {

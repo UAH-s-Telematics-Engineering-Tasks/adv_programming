@@ -13,21 +13,16 @@ const char* menu[] = {
 int main(void) {
   Hour_class time;
   char recipient_string[STR_SIZE];
-  bool valid_time = false;
 
   while (true) {
     switch (show_menu(menu, sizeof(menu) / sizeof(char*))) {
       case 1:
-        valid_time = time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_C_string(recipient_string, sizeof(recipient_string), "Time format: "));
+        while(!time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_C_string(recipient_string, sizeof(recipient_string), "Time format: ")))
+          std::cout << "\nIncorrect time...\n\n";
         break;
 
       case 2:
         view_time(time);
-        if (valid_time)
-          std::cout << "Valid time!";
-        else
-          std::cout << "Wrong time...";
-        std::getchar();
         break;
 
       case 3:

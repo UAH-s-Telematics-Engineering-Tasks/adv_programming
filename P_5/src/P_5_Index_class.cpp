@@ -29,6 +29,6 @@ inline Hour::Hour_class Index_info::Index_class::get_birth_time(void) const {
 }
 
 void Index_info::view_index(const Index_class& index) {
-  std::cout << "Name: " << index.get_name() << "Age: " << index.get_age() << " ";
+  std::cout << "Name: " << index.get_name() << " Age: " << index.get_age() << " Birth time: ";
   Hour::view_time(index.get_birth_time());
 }

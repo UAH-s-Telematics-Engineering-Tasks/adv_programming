@@ -9,9 +9,7 @@ Hour::Hour_class::Hour_class(int h, int m, int s, const std::string& tf) : hours
     utils::Cpp_utils::capitalize(this->time_format);
 }
 
-Hour::Hour_class::Hour_class(const Hour_class& init_obj) : hours{init_obj.hours}, minutes{init_obj.minutes}, seconds{init_obj.seconds}, time_format{init_obj.time_format} {
-  std::cout << "Calling the copy constructor!\n";
-}
+Hour::Hour_class::Hour_class(const Hour_class& init_obj) : hours{init_obj.hours}, minutes{init_obj.minutes}, seconds{init_obj.seconds}, time_format{init_obj.time_format} {}
 
 Hour::Hour_class& Hour::Hour_class::operator =(const Hour_class& init_obj) {
   // We can't compare init_obj and *this because one is const and the other isn't. We areonly comparing addresses in this way!
@@ -49,10 +47,7 @@ void Hour::Hour_class::get_time(int& target_hours, int& target_minutes, int& tar
   target_hours = this->hours; target_minutes = this->minutes; target_seconds = this->seconds; target_format = this->time_format;
 }
 
-Hour::Hour_class::~Hour_class(void) {
-  std::cout << "Calling the destructor!";
-  std::getchar();
-}
+Hour::Hour_class::~Hour_class(void) {}
 
 void Hour::view_time(const class Hour_class& t) {
   int h, m, s;

@@ -10,6 +10,13 @@ const char* menu[] = {
   "3. Quit"
 };
 
+const char* target_strings[] = {
+  "AM",
+  "PM",
+  "24 HOURS",
+  "X"
+};
+
 int main(void) {
   Hour_class time;
   char recipient_string[STR_SIZE];
@@ -17,7 +24,7 @@ int main(void) {
   while (true) {
     switch (show_menu(menu, sizeof(menu) / sizeof(char*))) {
       case 1:
-        while(!time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_C_string(recipient_string, sizeof(recipient_string), "Time format: ")))
+        while(!time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_C_string_cmp(recipient_string, sizeof(recipient_string), "Time format: ", target_strings)))
           std::cout << "\nIncorrect time...\n\n";
         break;
 

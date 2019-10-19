@@ -15,5 +15,7 @@ namespace utils {
     public:
       static std::string& capitalize(std::string&);
       static std::string& read_string(std::string&, std::string);
+      static std::string& read_string_cmp(std::string&, std::string, std::string*);
+      static bool target_found(std::string, std::string*);
   };
 };

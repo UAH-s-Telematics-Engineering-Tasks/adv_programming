@@ -9,6 +9,13 @@ const char* menu[] = {
   "3. Quit"
 };
 
+std::string target_strings[] = {
+  "AM",
+  "PM",
+  "24 HOURS",
+  "X"
+};
+
 int main(void) {
   Hour_class time;
   std::string recipient_string;
@@ -17,7 +24,7 @@ int main(void) {
   while (true) {
     switch (show_menu(menu, sizeof(menu) / sizeof(char*))) {
       case 1:
-        valid_time = time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_string(recipient_string, "Time format: "));
+        valid_time = time.set_time(read_int("Hours: "), read_int("Minutes: "), read_int("Seconds: "), read_string_cmp(recipient_string, "Time format: ", target_strings));
         break;
 
       case 2:

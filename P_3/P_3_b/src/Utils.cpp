@@ -1,4 +1,5 @@
 #include "../inc/Library_includes.h"
+#include "../inc/Utils.h"
 
 // We want to clean the buffer in every iteration so that data after a space is NOT used!
 
@@ -39,6 +40,26 @@ std::string& read_string(std::string& target_str, std::string prompt) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
   return target_str;
+}
+
+std::string& read_string_cmp(std::string& target_str, std::string prompt, std::string* targets) {
+  do {
+    std::cout << prompt;
+    std::getline(std::cin, target_str, '\n');
+    if (std::cin.fail()) {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  } while(!target_found(target_str, targets));
+  return target_str;
+}
+
+bool target_found(std::string str, std::string* targets) {
+  capitalize(str);
+  for (int i = 0; targets[i] != "X"; i++)
+    if (str == targets[i])
+      return true;
+  return false;
 }
 
 std::string& capitalize(std::string& str) {

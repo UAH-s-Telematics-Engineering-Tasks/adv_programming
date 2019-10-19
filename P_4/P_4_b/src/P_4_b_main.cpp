@@ -20,6 +20,13 @@ const char* sub_menu[] = {
   "6. Back to the main menu"
 };
 
+std::string target_strings[] = {
+  "AM",
+  "PM",
+  "24 HOURS",
+  "X"
+};
+
 int main(void) {
   Hour_class* dynamic_time = NULL;
   bool stay_here;
@@ -57,7 +64,7 @@ int main(void) {
               }
             case 5:
               {
-                Hour_class local_time {utils::General_utils::read_int("Hours: "), utils::General_utils::read_int("Minutes: "), utils::General_utils::read_int("Seconds: "), utils::Cpp_utils::read_string(recipient_str, "Format: ")};
+                Hour_class local_time {utils::General_utils::read_int("Hours: "), utils::General_utils::read_int("Minutes: "), utils::General_utils::read_int("Seconds: "), utils::Cpp_utils::read_string_cmp(recipient_str, "Format: ", target_strings)};
                 view_time(local_time);
                 break;
               }
@@ -69,7 +76,7 @@ int main(void) {
 
       case 2:
         if(!dynamic_time) {
-          dynamic_time = new (std::nothrow) Hour_class(utils::General_utils::read_int("Hours: "), utils::General_utils::read_int("Minutes: "), utils::General_utils::read_int("Seconds: "), utils::Cpp_utils::read_string(recipient_str, "Format: "));
+          dynamic_time = new (std::nothrow) Hour_class(utils::General_utils::read_int("Hours: "), utils::General_utils::read_int("Minutes: "), utils::General_utils::read_int("Seconds: "), utils::Cpp_utils::read_string_cmp(recipient_str, "Format: ", target_strings));
           view_time(*dynamic_time);
         }
         else {

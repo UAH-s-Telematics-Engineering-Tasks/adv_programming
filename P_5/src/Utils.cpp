@@ -61,6 +61,26 @@ std::string& utils::Cpp_utils::read_string(std::string& target_str, std::string 
   return target_str;
 }
 
+std::string& utils::Cpp_utils::read_string_cmp(std::string& target_str, std::string prompt, std::string* targets) {
+  do {
+    std::cout << prompt;
+    std::getline(std::cin, target_str, '\n');
+    if (std::cin.fail()) {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  } while(!target_found(target_str, targets));
+  return target_str;
+}
+
+bool utils::Cpp_utils::target_found(std::string str, std::string* targets) {
+  capitalize(str);
+  for (int i = 0; targets[i] != "X"; i++)
+    if (str == targets[i])
+      return true;
+  return false;
+}
+
 std::string& utils::Cpp_utils::capitalize(std::string& str) {
   try {
     for (unsigned long int i = 0; i < str.length(); i++)

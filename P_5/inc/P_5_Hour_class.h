@@ -18,7 +18,6 @@ namespace Hour {
       bool is_time_correct(void) const;
       bool set_time (int h, int min, int sec, std::string& format);
       void get_time(int& h, int& min, int& sec, std::string& format) const;
-      ~Hour_class();
   };
 
   void view_time(const Hour_class&);

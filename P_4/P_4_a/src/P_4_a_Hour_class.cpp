@@ -13,7 +13,7 @@ Hour_class::Hour_class(const Hour_class& init_obj) : hours{init_obj.hours}, minu
 }
 
 Hour_class& Hour_class::operator =(const Hour_class& init_obj) {
-  // We can't compare init_obj and *this because one is const and the other isn't. We areonly comparing addresses in this way!
+  // We can't compare init_obj and *this because one is const and the other isn't. We are only comparing addresses in this way!
   // Note that if wee create an object with Hour_class time = existing_object the copy constructor will be called instead of the assignment operator! For the assignment to work both objects must exist. Kinda weird...
   if (&init_obj != this) {
     std::cout << "Calling the assignment operator!\n";

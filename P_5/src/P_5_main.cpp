@@ -48,13 +48,16 @@ int main(int argc, char const* argv[]) {
 
     The next method in line will be get_birth_time(). It's return statement will create a copy of the index_birth_time member and to do that it'll call Hour_class' copy constructor. We should note that the copy construtor belongs to the nameless object to be rreturned, not the index_birth_time attribute! This copy will be returned to main() and we only have one more step to go!
 
-    Finally, the nameless object returned by get_birth_time() will be assigned to time. To that end we will call the assignment operator we had overloaded. We should point out we are calling time's assignment operator! Once it finishes its task we will exit the program.
+    Now, the nameless object returned by get_birth_time() will be assigned to time. To that end we will call the assignment operator we had overloaded. We should point out we are calling time's assignment operator! Once it finishes its task we will exit the program.
+
+    We will finally see that the constructor for the nameless object will be called. Once it has been assigned there's no more use for it and it'll be disposed.
 
     We should end by noting that we have this many calls due to the fact that get_birth_time() returns an Hour_class object. We'll see how things change when returning a reference to an object of that class! */
 
     Index_info::Index_class index_card;
     Hour::Hour_class time;
     time = index_card.get_birth_time();
+    std::getchar();
     return 0;
   }
   else if (!strcmp(argv[argc - 1], "2")) {

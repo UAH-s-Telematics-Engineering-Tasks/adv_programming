@@ -13,10 +13,12 @@ class Polynom_class {
     Polynom_class();
     Polynom_class(const Polynom_class&);
     Polynom_class(double coeff, int exp = 0);
+    Polynom_class(std::vector<Monomial_class>);
     Polynom_class(const Monomial_class&);
 
     void show_polynom(std::ostream&) const;
     Polynom_class& operator<<(const Monomial_class&);
+    Polynom_class& operator=(const Polynom_class&);
 
     ~Polynom_class();
 

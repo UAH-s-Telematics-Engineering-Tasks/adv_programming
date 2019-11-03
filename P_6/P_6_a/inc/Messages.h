@@ -1,5 +1,5 @@
-#include ""
+#include "../inc/Library_includes.h"
 
-const std::string [] msgs = {
+const std::string messages [] = {
   "Allocation ERROR @",
 };

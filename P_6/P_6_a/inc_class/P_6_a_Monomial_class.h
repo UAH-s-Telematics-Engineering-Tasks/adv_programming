@@ -1,4 +1,4 @@
-#include ""
+#include "../inc/Library_includes.h"
 
 #if !defined(__MONOMIAL_CLASS__)
 #define __MONOMIAL_CLASS__
@@ -16,7 +16,7 @@ class Monomial_class {
     void set_coeff(double coeff) {this->coefficient = coeff;}
     void set_exp(int exp) {this->exponent = exp;}
 
-    Monomial_class operator-(void) const {return Monomial_class((this->coefficient), this->exponent);}
+    Monomial_class operator-(void) const {return Monomial_class(-(this->coefficient), this->exponent);}
 };
 
 std::ostream& operator<<(std::ostream&, const Monomial_class&);

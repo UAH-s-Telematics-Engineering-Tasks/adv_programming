@@ -1,4 +1,5 @@
-#include "../inc/P_6_a_Monomial_class.h"
+#include "../inc_class/P_6_a_Monomial_class.h"
+#include "../inc/Library_includes.h"
 
 std::ostream& operator<<(std::ostream& out_stream, const Monomial_class& monomial) {
   switch (monomial.get_exp()) {

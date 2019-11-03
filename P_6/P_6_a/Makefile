@@ -6,4 +6,4 @@ CLASS_CPP_FILES:=$(wildcard ./src_class/*.cpp)
 FLAGS=-Wall -Wextra
 
 make_project: $(CPP_FILES)
-	$(CC) -o P_5.ex $(H_FILES) $(CPP_FILES) $(CLASS_H_FILES) $(CLASS_CPP_FILES) $(FLAGS)
+	$(CC) -o P_6_a.ex $(H_FILES) $(CPP_FILES) $(CLASS_H_FILES) $(CLASS_CPP_FILES) $(FLAGS)

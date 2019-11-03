@@ -19,7 +19,7 @@ class Term_class {
     Term_class* get_next_term(void) const {return this->next_term;}
 
     void set_coeff(double coeff) {this->monomial.set_coeff(coeff);}
-    void set_exp(int exp) {this->monomial.set_coeff(coeff);}
+    void set_exp(int exp) {this->monomial.set_exp(exp);}
     void set_monomial(const Monomial_class& mono) {this->monomial = mono;}
     void set_next_term(Term_class* next) {this->next_term = next;}
 };

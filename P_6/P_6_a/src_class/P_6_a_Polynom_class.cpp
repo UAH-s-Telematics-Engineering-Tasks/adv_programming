@@ -38,7 +38,7 @@ else
 Polynom_class& Polynom_class::operator=(const Polynom_class& in_poly) {
   if (this != &in_poly) {
       Term_class* curr = in_poly.polynom_head;
-      if (!this->polynom_head) {
+      if (this->polynom_head) {
         Term_class* next = this->polynom_head, *current;
         while(next) {
           current = next;
@@ -204,7 +204,7 @@ const Polynom_class Polynom_class::operator*(const Polynom_class& input) {
 }
 
 Polynom_class& Polynom_class::operator*=(const Polynom_class& input) {
-  (*this) = (*this) * input;
+  *this = *this * input;
   return *this;
 }
 

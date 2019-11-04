@@ -94,12 +94,12 @@ int main(void) {
   std::cout << "\tR = " << R << '\n';
   std::cout << "\tS = " << S << '\n';
   std::cout << "\tR - S = " << R - S << '\n';
-  std::cout << "\tR += S = " << (R += S) << "\n\n";
+  std::cout << "\tR += S: " << (R += S) << "\n\n";
 
   std::cout << "Testing the -= operator\n";
   std::cout << "\tN = " << N << '\n';
   std::cout << "\tY = " << Y << '\n';
-  std::cout << "\tN -= Y" << (N -= Y) << "\n\n";
+  std::cout << "\tN -= Y: " << (N -= Y) << "\n\n";
 
   std::cout << "Testing the [] operator\n";
   std::cout << "\tP = " << P << '\n';
@@ -110,9 +110,9 @@ int main(void) {
   std::cout << "\tU(0.5) = " << U(0.5) << "\n\n";
 
   std::cout << "Testing the * operator\n";
-  std::cout << "\tP = " << P << '\n';
+  std::cout << "\tQ = " << Q << '\n';
   std::cout << "\tS = " << S << '\n';
-  std::cout << "\tP * S = " << P * S << "\n\n";
+  std::cout << "\tQ * S = " << Q * S << "\n\n";
 
   std::cout << "Testing the *= operator\n";
   std::cout << "\tP = " << P << '\n';

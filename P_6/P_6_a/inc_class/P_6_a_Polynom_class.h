@@ -19,6 +19,19 @@ class Polynom_class {
     void show_polynom(std::ostream&) const;
     Polynom_class& operator<<(const Monomial_class&);
     Polynom_class& operator=(const Polynom_class&);
+    operator int();
+    bool operator>(const Polynom_class&);
+    bool operator<(const Polynom_class&);
+    bool operator==(const Polynom_class&);
+    Polynom_class operator-(void) const;
+    const Polynom_class operator+(const Polynom_class&);
+    const Polynom_class operator-(const Polynom_class&);
+    Polynom_class& operator+=(const Polynom_class&);
+    Polynom_class& operator-=(const Polynom_class&);
+    double operator[](int);
+    double operator()(double);
+    const Polynom_class operator*(const Polynom_class&);
+    Polynom_class& operator*=(const Polynom_class&);
 
     ~Polynom_class();
 

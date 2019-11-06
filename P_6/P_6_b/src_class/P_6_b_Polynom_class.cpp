@@ -34,11 +34,9 @@ Polynom_class& Polynom_class::operator=(const Polynom_class& in_polynom) {
 void Polynom_class::show_polynom(std::ostream& out_stream) const {
   if(!this->poly.size())
     out_stream << "0 ";
-
-  while(term_ptr) {
-    out_stream << term_ptr->get_monomial() << ' ';
-    term_ptr = term_ptr->get_next_term();
-  }
+  else
+    for (int i = 0; i < this->poly.size(); i++)
+      out_stream << poly[i] << ' ';
 }
 
 Polynom_class& Polynom_class::operator<<(const Monomial_class& monomial) {
@@ -95,38 +93,35 @@ Polynom_class& Polynom_class::operator<<(const Monomial_class& monomial) {
 }
 
 Polynom_class::operator int() {
-  return this->polynom_head->get_exp();
+  if (this->poly.size())
+    return this->poly[0].get_exp();
+  else
+    return 0;
 }
 
 bool Polynom_class::operator>(const Polynom_class& input) {
-  return this->polynom_head->get_exp() > input.polynom_head->get_exp();
+  return this->poly[0].get_exp() > input.poly.get_exp();
 }
 
 bool Polynom_class::operator<(const Polynom_class& input) {
-  return this->polynom_head->get_exp() < input.polynom_head->get_exp();
+  return this->poly[0].get_exp() < input.poly[0].get_exp();
 }
 
 bool Polynom_class::operator==(const Polynom_class& input) {
-  return this->polynom_head->get_exp() == input.polynom_head->get_exp();
+  return this->poly[0].get_exp() == input.poly[0].get_exp();
 }
 
 Polynom_class Polynom_class::operator-(void) const {
-  Polynom_class new_poly;
-  Term_class* ptr = this->polynom_head;
-  while(ptr) {
-    new_poly << Monomial_class(-(ptr->get_coeff()), ptr->get_exp());
-    ptr = ptr->get_next_term();
-  }
-  return new_poly;
+  std::vector<Monomial_class> poly_vec = this->poly;
+  for (int i = 0; i < poly_vec.size(); i++)
+    poly_vec[i].set_coeff(-poly_vec[i].get_coeff());
+  return Polynom_class(poly_vec);
 }
 
 const Polynom_class Polynom_class::operator+(const Polynom_class& input) {
-  Polynom_class new_poly = *this;
-  Term_class* ptr = input.polynom_head;
-  while (ptr) {
-    new_poly << ptr->get_monomial();
-    ptr = ptr->get_next_term();
-  }
+  Polynom_class new_poly(this->poly);
+  for (int i = 0; i < input.poly.size(); i++)
+    new_poly << input.poly[i];
   return new_poly;
 }
 
@@ -145,36 +140,25 @@ Polynom_class& Polynom_class::operator-=(const Polynom_class& input) {
 }
 
 double Polynom_class::operator[](int exp) {
-  Term_class* ptr = this->polynom_head;
-  while (ptr) {
-    if (ptr->get_exp() == exp)
-      return ptr->get_coeff();
-    ptr = ptr->get_next_term();
-  }
+  for (int i = 0; i < this->poly.size(); i++)
+    if (this->poly[i].get_exp() == exp)
+      return this->poly[i].get_coeff();
   return 0;
 }
 
 double Polynom_class::operator()(double x) {
   double sum = 0;
-  Term_class* ptr = this->polynom_head;
-  while(ptr) {
-    sum += (ptr->get_coeff() * pow(x, ptr->get_exp()));
-    ptr = ptr->get_next_term();
-  }
+  for (int i = 0; i < this->poly.size(); i++)
+    sum += (this->poly[i].get_coeff() * pow(x, this->poly[i].get_exp()));
   return sum;
 }
 
 const Polynom_class Polynom_class::operator*(const Polynom_class& input) {
   Term_class* in_ptr = input.polynom_head, *my_ptr = NULL;
   Polynom_class new_poly;
-  while(in_ptr) {
-    my_ptr = this->polynom_head;
-    while(my_ptr) {
-      new_poly << Monomial_class(in_ptr->get_coeff() * my_ptr->get_coeff(), in_ptr->get_exp() + my_ptr->get_exp());
-      my_ptr = my_ptr->get_next_term();
-    }
-    in_ptr = in_ptr->get_next_term();
-  }
+  for (int i = 0; i < input.poly.size(); i++)
+    for (int k = 0; k < this->poly.size(); k++)
+      new_poly << Monomial_class(input.poly[i].get_coeff() * this->poly[i].get_coeff(), input.poly[i].get_exp() + this->poly[i].get_exp());
   return new_poly;
 }
 

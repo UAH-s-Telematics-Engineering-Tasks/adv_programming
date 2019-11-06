@@ -78,25 +78,18 @@ Polynom_class& Polynom_class::operator<<(const Monomial_class& monomial) {
     return (*this);
   }
   else if (curr_ptr->get_exp() < exp) {
-    this->polynom_head = new (std::nothrow) Term_class(monomial.get_coeff(), exp, curr_ptr);
+    this->polynom_head = new (std::nothrow) Term_class(monomial.get_coeff(), exp, curr_ptr); // Taking care of this within the loop is a headache!
     return (*this);
   }
   else
-    while(prev_ptr) {
-      if (prev_ptr && !curr_ptr) {
-          if ((new_elm = new (std::nothrow) Term_class(monomial.get_coeff(), exp))) {
-            prev_ptr->set_next_term(new_elm);
-            return (*this);
-          }
-        }
-
-      else if (curr_ptr->get_exp() == exp) {
+    while(curr_ptr) {
+      if (curr_ptr->get_exp() == exp) {
         double new_coeff = monomial.get_coeff() + curr_ptr->get_coeff();
         if (new_coeff) {
           curr_ptr->set_coeff(new_coeff);
           return (*this);
         }
-      else {
+        else {
           prev_ptr->set_next_term(curr_ptr->get_next_term());
           if (curr_ptr == this->polynom_head)
             this->polynom_head = curr_ptr->get_next_term();
@@ -115,6 +108,10 @@ Polynom_class& Polynom_class::operator<<(const Monomial_class& monomial) {
       prev_ptr = curr_ptr;
       curr_ptr = curr_ptr->get_next_term();
     }
+  if ((new_elm = new (std::nothrow) Term_class(monomial.get_coeff(), exp))) {
+    prev_ptr->set_next_term(new_elm);
+    return *this;
+  }
   std::cout << messages[0] << " Polynom Insertion Operator\n";
   return (*this);
 }

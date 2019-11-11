@@ -55,7 +55,7 @@ Polynom_class& Polynom_class::operator=(const Polynom_class& in_poly) {
   return *this;
 }
 
-void Polynom_class::show_polynom(std::ostream& out_stream) const {
+std::ostream& Polynom_class::show_polynom(std::ostream& out_stream) const {
   Term_class* term_ptr = this->polynom_head;
   if(!term_ptr)
     out_stream << "0 ";
@@ -64,6 +64,7 @@ void Polynom_class::show_polynom(std::ostream& out_stream) const {
     out_stream << term_ptr->get_monomial() << ' ';
     term_ptr = term_ptr->get_next_term();
   }
+  return out_stream;
 }
 
 Polynom_class& Polynom_class::operator<<(const Monomial_class& monomial) {
@@ -157,13 +158,11 @@ const Polynom_class Polynom_class::operator-(const Polynom_class& input) {
 }
 
 Polynom_class& Polynom_class::operator+=(const Polynom_class& input) {
-  *this = *this + input;
-  return *this;
+  return *this = *this + input;
 }
 
 Polynom_class& Polynom_class::operator-=(const Polynom_class& input) {
-  *this = *this - input;
-  return *this;
+  return *this = *this - input;
 }
 
 double Polynom_class::operator[](int exp) {
@@ -201,8 +200,7 @@ const Polynom_class Polynom_class::operator*(const Polynom_class& input) {
 }
 
 Polynom_class& Polynom_class::operator*=(const Polynom_class& input) {
-  *this = *this * input;
-  return *this;
+  return *this = *this * input;
 }
 
 /* 6 */
@@ -216,6 +214,5 @@ Polynom_class::~Polynom_class() {
 }
 
 std::ostream& operator<<(std::ostream& o_stream, const Polynom_class& poly) {
-  poly.show_polynom(o_stream);
-  return o_stream;
+  return poly.show_polynom(o_stream);
 }

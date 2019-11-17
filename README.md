@@ -6,3 +6,9 @@ You'll find a folder for each of the practices we've doing throughout the course
 
 ## Checking for Memory Leaks
 As the utility we've been given works only with Windows based compilers...
+
+## And remember
+
+<p align="center">
+  <img src="./Memes/It_works.jpg">
+</p>

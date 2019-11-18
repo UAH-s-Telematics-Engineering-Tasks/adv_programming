@@ -15,17 +15,20 @@
 
 int main(void) {
 
-  Animal_class* animal_array[] = {new Fish_class(2, 15), new Bird_class(5.5), new Dog_class("Shin-Tzu")};
+  Animal_class* animal_array[] = {new Fish_class(2, 15, 12, "Green"), new Bird_class(5.5, 3, "White"), new Dog_class("Shin-Tzu", 50, 7, "Pink"), new Mammal_class(150, 5, "Black")};
 
-  animal_array[0]->how_do_i_move(); // Calls Fish_class' how_do_i_move()!
+  for (int i = 0; i < 4; i++) {
+    animal_array[i]->show();
+    animal_array[i]->how_do_i_move();
+  }
 
-  Fish_class fish;
-  Mammal_class mammal;
-  Bird_class bird;
-  Dog_class dog;
-
-  fish.show();
-  mammal.show();
-  bird.show();
-  dog.show();
+  // Fish_class fish;
+  // Mammal_class mammal;
+  // Bird_class bird;
+  // Dog_class dog;
+  //
+  // fish.show();
+  // mammal.show();
+  // bird.show();
+  // dog.show();
 }

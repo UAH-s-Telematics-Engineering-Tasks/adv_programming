@@ -24,8 +24,12 @@ class Animal_class {
     std::string get_color(void) const {return this->color;}
     virtual void how_do_i_move(void) {};
 
+    // virtual void show(void) const {
+    //   std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color;
+    // }
+
     void show(void) const {
-      std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color;
+      std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color << '\n';
     }
 };
 

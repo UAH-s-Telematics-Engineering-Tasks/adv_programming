@@ -18,7 +18,13 @@ class Fish_class : public Animal_class {
     void set_length(float l) {this->length = l;}
     float get_length(void) const {return this->length;}
 
-    void how_do_i_move(void) override {std::cout << "I swim!\n";}
+    void how_do_i_move(void) override {std::cout << "\tI swim!\n";}
+
+    // void show(void) const override {
+    //   std::cout << "Fish";
+    //   Animal_class::show();
+    //   std::cout << "\n\tFins: " << this->number_of_fins << "\n\tLength: " << this->length << "\n\n";
+    // }
 
     void show(void) const {
       std::cout << "Fish";

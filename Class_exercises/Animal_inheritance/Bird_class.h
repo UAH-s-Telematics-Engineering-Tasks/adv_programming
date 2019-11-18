@@ -14,6 +14,14 @@ class Bird_class : public Animal_class {
     void set_wingspan(float ws) {this->wingspan = ws;}
     float get_wingspan(void) const {return this->wingspan;}
 
+    void how_do_i_move(void) override {std::cout << "\tI fly!\n";}
+
+    // void show(void) const override {
+    //   std::cout << "Bird";
+    //   Animal_class::show();
+    //   std::cout << "\n\tWingspan: " << this->wingspan << "\n\n";
+    // }
+
     void show(void) const {
       std::cout << "Bird";
       Animal_class::show();

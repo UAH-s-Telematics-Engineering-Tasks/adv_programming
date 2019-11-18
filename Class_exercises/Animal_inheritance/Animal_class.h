@@ -24,13 +24,15 @@ class Animal_class {
     std::string get_color(void) const {return this->color;}
     virtual void how_do_i_move(void) {};
 
-    // virtual void show(void) const {
-    //   std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color;
-    // }
-
-    void show(void) const {
+    virtual void show(void) const {
       std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color << '\n';
     }
+
+    // void show(void) const {
+    //   std::cout << "\n\tAge: " << this->age << "\n\tColor: " << this->color << '\n';
+    // }
+
+    virtual Animal_class* clone(void) {return new Animal_class(*this);}
 };
 
 #endif

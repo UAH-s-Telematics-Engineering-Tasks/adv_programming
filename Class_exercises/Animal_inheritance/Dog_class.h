@@ -16,17 +16,17 @@ class Dog_class : public Mammal_class {
 
     void how_do_i_move(void) override {std::cout << "\tI walk!\n";}
 
-    // void show(void) const override {
-    //   std::cout << "Dog: ";
-    //   Mammal_class::show();
-    //   std::cout << "\b \b\tRace: " << this->race << "\n\n";
-    // }
-
-    void show(void) const {
+    void show(void) const override {
       std::cout << "Dog: ";
       Mammal_class::show();
       std::cout << "\b \b\tRace: " << this->race << "\n\n";
     }
+
+    // void show(void) const {
+    //   std::cout << "Dog: ";
+    //   Mammal_class::show();
+    //   std::cout << "\b \b\tRace: " << this->race << "\n\n";
+    // }
 };
 
 #endif

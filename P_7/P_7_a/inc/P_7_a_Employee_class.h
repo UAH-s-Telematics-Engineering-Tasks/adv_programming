@@ -16,6 +16,7 @@ class Employee_class : public Index_class {
     void set_worked_years(int w_y) {this->worked_years = w_y;}
 
     void show(void) override;
+    inline Index_class* clone(void) override;
 };
 
 #endif

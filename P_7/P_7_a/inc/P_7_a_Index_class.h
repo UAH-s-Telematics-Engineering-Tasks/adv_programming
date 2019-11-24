@@ -21,6 +21,7 @@ class Index_class {
       void view_index(void);
       /* Assigning 0 to very virtual methos turns this class into an abstract one! */
       virtual void show(void) = 0;
+      virtual Index_class* clone(void) = 0;
 
       virtual ~Index_class() {};
   };

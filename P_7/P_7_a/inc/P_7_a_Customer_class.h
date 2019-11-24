@@ -14,6 +14,7 @@ class Customer_class : public Index_class {
     void set_DNI(const std::string& dni) {this->DNI = dni;}
 
     void show(void) override;
+    inline Index_class* clone(void) override;
 };
 
 #endif

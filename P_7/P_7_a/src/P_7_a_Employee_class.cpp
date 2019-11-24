@@ -7,3 +7,7 @@ Employee_class::show(void) override {
   std::cout << "+ Position: " << this->position << '\n' << "\tWorked for: " << this->worked_years << " years\n":
   this->view_index();
 }
+
+inline Index_class* Employee_class::clone(void) override {
+  return new (std::nothrow) Employee_class(*this);
+}

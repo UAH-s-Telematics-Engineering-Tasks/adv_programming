@@ -7,3 +7,7 @@ Customer_class::show(void) override {
   std::cout << "+ DNI: " << this->DNI << '\n';
   this->view_index();
 }
+
+inline Index_class* Customer_class::clone(void) override {
+  return new (std::nothrow) Customer_class(*this);
+}

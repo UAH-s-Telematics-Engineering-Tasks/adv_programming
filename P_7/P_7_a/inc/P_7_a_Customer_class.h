@@ -9,7 +9,7 @@ class Customer_class : public Index_class {
     std::string DNI;
 
   public:
-    Employee_class(const std::string = "", int = 0, int = 12, int = 0, int = 0, const std::string& = "AM", const std::string& = "");
+    Customer_class(const std::string = "", int = 0, int = 12, int = 0, int = 0, const std::string& = "AM", const std::string& = "");
 
     void set_DNI(const std::string& dni) {this->DNI = dni;}
 

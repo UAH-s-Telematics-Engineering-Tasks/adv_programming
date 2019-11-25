@@ -1,10 +1,11 @@
-#include "Library_includes.h"
-#include "P_7_a_Employee_class.h"
-#include "P_7_a_Customer_class.h"
+#include "../inc/Library_includes.h"
+#include "../inc/P_7_a_Employee_class.h"
+#include "../inc/P_7_a_Customer_class.h"
+#include "../inc/P_7_a_Record_class.h"
 
 Record_class::Record_class(int n_elms) : max_elements{n_elms}, people{NULL}, next_free{0} {
   if (n_elms <= 0)
-    std::cout << "Wrong value for the elements! Initializing people to NULL. Fill me in manually.\n"
+    std::cout << "Wrong value for the elements! Initializing people to NULL. Fill me in manually.\n";
   if (this->people = new (std::nothrow) Index_class*[n_elms])
     memset(this->people, 0, n_elms * sizeof(Index_class*));
   else
@@ -53,7 +54,7 @@ static bool Record_class::is_employee(Index_class* in_person) {
 void Record_class::show_employees(void) {
   for (int i = this->next_free - 1; i <= 0; i++)
     /* Can I call a static method like this? Better check... */
-    if (is_employee(this->people[i]))
+    if (Record_class::is_employee(this->people[i]))
       this->people[i]->show();
 }
 

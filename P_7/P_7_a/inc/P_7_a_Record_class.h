@@ -7,7 +7,7 @@
 
 class Record_class {
   private:
-    Index_class* people;
+    Index_class** people;
     int max_elements;
     int next_free;
 
@@ -16,9 +16,8 @@ class Record_class {
     Record_class(const Record_class&);
     Record_class& operator=(const Record_class&);
 
-    void set_DNI(const std::string& dni) {this->DNI = dni;}
     int get_max_elements(void) {return this->max_elements;}
-    int get_next_free(void) {return this->get_next_free;}
+    int get_next_free(void) {return this->next_free;}
     bool am_i_full(void);
     bool add_person(Index_class*);
 

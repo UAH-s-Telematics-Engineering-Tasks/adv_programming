@@ -53,24 +53,26 @@ int main(void) {
 
   while (true)
     switch (utils::General_utils::show_menu(menu, sizeof(menu) / sizeof(char*))) {
-      case 1:
+      case 1: {
         Employee_class new_emp(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", positions[data_index % DATA_SIZE], wrk_y[data_index % DATA_SIZE]);
         data_index++;
         record.add_person(&new_emp);
+      }
         break;
 
-      case 2:
-        Customer_class new_cust(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", positions[data_index % DATA_SIZE], wrk_y[data_index % DATA_SIZE]);
+      case 2: {
+        Customer_class new_cust(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", DNIs[data_index % DATA_SIZE]);
         data_index++;
         record.add_person(&new_cust);
+      }
         break;
 
       case 3:
         utils::Cpp_utils::read_string(str_buff, "Name to look for: ");
         for (int i = record.get_next_free() - 1; i <= 0; i--)
-          if (record[i]->get_name == str_buff) {
+          if (record[i]->get_name() == str_buff) {
             record[i]->show();
-            if (is_employee(record[i]))
+            if (Record_class::is_employee(record[i]))
               std::cout << "I'm an employee!\n";
             else
               std::cout << "I'm a customer!\n";
@@ -88,9 +90,10 @@ int main(void) {
         break;
 
       case 6:
-        if (!backup)
+        if (!backup) {
           if(!(backup = new (std::nothrow) Record_class(record)))
             std::cout << "Error while backing up...\n";
+        }
         else
           std::cout << "We already have a backup!\n";
         break;
@@ -101,7 +104,7 @@ int main(void) {
           delete backup;
         }
         else
-          std:: << "We don't have a backup yet...\n";
+          std::cout << "We don't have a backup yet...\n";
         break;
 
       case 8:

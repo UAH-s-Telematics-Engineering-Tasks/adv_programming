@@ -68,9 +68,12 @@ int main(void) {
         break;
 
       case 3:
+        if (!record.get_next_free()) {
+          std::cout << "We have an empty record...\n";
+          break;
+        }
         utils::Cpp_utils::read_string(str_buff, "Name to look for: ");
-        // for (int i = record.get_next_free() - 1; i >= 0; i--)
-        for (int i = 0; i < record.get_max_elements(); i++)
+        for (int i = record.get_next_free() - 1; i >= 0; i--)
           if (record[i]->get_name() == str_buff) {
             record[i]->show();
             if (Record_class::is_employee(record[i]))

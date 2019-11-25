@@ -63,7 +63,7 @@ void Record_class::show_employees(void) {
 }
 
 Index_class* Record_class::operator[](int index) {
-  if (index < this->max_elements && index > 0)
+  if (index < this->max_elements && index >= 0)
     return this->people[index];
   return NULL;
 }

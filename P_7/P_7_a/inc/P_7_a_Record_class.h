@@ -12,7 +12,7 @@ class Record_class {
     int next_free;
 
   public:
-    Record_class(int);
+    Record_class(int = 0);
     Record_class(const Record_class&);
     Record_class& operator=(const Record_class&);
 

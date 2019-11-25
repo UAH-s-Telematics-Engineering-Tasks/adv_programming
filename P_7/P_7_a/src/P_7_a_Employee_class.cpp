@@ -4,7 +4,7 @@
 Employee_class::Employee_class(const std::string name, int age, int h, int m, int s, const std::string& t_f, const std::string& pos, int w_c) : Index_class{name, age, h, m, s, t_f}, position{pos}, worked_years{w_c} {}
 
 void Employee_class::show(void) {
-  std::cout << "+ Position: " << this->position << '\n' << "\tWorked for: " << this->worked_years << " years\n";
+  std::cout << "+ Record entry:\n" << "\tPosition: " << this->position << '\n' << "\tWorked for: " << this->worked_years << " years\n";
   this->view_index();
 }
 

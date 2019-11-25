@@ -56,20 +56,29 @@ int main(void) {
       case 1: {
         Employee_class new_emp(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", positions[data_index % DATA_SIZE], wrk_y[data_index % DATA_SIZE]);
         data_index++;
-        record.add_person(&new_emp);
+        if (record.add_person(&new_emp))
+          std::cout << "Current reocords: " << record.get_next_free();
+        else
+          std::cout << "I'm kind of full...";
+        std::getchar();
       }
         break;
 
       case 2: {
         Customer_class new_cust(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", DNIs[data_index % DATA_SIZE]);
         data_index++;
-        record.add_person(&new_cust);
+        if (record.add_person(&new_cust))
+          std::cout << "Current reocords: " << record.get_next_free();
+        else
+          std::cout << "I'm kind of full...";
+        std::getchar();
       }
         break;
 
       case 3:
         if (!record.get_next_free()) {
-          std::cout << "We have an empty record...\n";
+          std::cout << "We have an empty record...";
+          std::getchar();
           break;
         }
         utils::Cpp_utils::read_string(str_buff, "Name to look for: ");
@@ -77,15 +86,16 @@ int main(void) {
           if (record[i]->get_name() == str_buff) {
             record[i]->show();
             if (Record_class::is_employee(record[i]))
-              std::cout << "\tI'm an employee!\n";
+              std::cout << "\tI'm an employee!";
             else
-              std::cout << "\tI'm a customer!\n";
+              std::cout << "\tI'm a customer!";
           }
         std::getchar();
         break;
 
       case 4:
         record.show_record();
+        std::cout << "\b\b ";
         std::getchar();
         break;
 

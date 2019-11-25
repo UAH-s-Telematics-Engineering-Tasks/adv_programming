@@ -24,6 +24,7 @@ class Record_class {
 
 
     void show_record(void);
+    void show_employees(void);
 
     static bool is_employee(Index_class*);
 

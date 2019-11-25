@@ -76,5 +76,35 @@ int main(void) {
               std::cout << "I'm a customer!\n";
           }
         break;
+
+      case 4:
+        record.show_record();
+        std::getchar();
+        break;
+
+      case 5:
+        record.show_employees();
+        std::getchar();
+        break;
+
+      case 6:
+        if (!backup)
+          if(!(backup = new (std::nothrow) Record_class(record)))
+            std::cout << "Error while backing up...\n";
+        else
+          std::cout << "We already have a backup!\n";
+        break;
+
+      case 7:
+        if (backup) {
+          record = *backup;
+          delete backup;
+        }
+        else
+          std:: << "We don't have a backup yet...\n";
+        break;
+
+      case 8:
+        return 0;
     }
 }

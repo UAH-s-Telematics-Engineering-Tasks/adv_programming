@@ -7,7 +7,9 @@ Record_class::Record_class(int n_elms) : people{NULL}, max_elements{n_elms}, nex
   if (n_elms <= 0)
     std::cout << "Wrong value for the elements! Initializing people to NULL. Fill me in manually.\n";
   if ((this->people = new (std::nothrow) Index_class*[n_elms]))
-    memset(this->people, 0, n_elms * sizeof(Index_class*));
+    //memset(this->people, 0, n_elms * sizeof(Index_class*));
+    for (int i = 0; i < this->max_elements; i++)
+      this->people[i] = NULL;
   else
     std::cout << "Memory allocation error. Leaving max_elements with n_elms value";
 }
@@ -61,14 +63,15 @@ void Record_class::show_employees(void) {
 }
 
 Index_class* Record_class::operator[](int index) {
-  if (index < this->next_free && index > 0)
+  if (index < this->max_elements && index > 0)
     return this->people[index];
   return NULL;
 }
 
 Record_class::~Record_class() {
   if (this->people) {
-    for (int i = this->next_free - 1; i <= 0; i--)
+    for (int i = 0; i < this->max_elements; i++)
+      if(this->people[i])
         delete this->people[i];
     delete[] this->people;
     this->people = NULL;

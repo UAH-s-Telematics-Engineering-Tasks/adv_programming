@@ -69,14 +69,16 @@ int main(void) {
 
       case 3:
         utils::Cpp_utils::read_string(str_buff, "Name to look for: ");
-        for (int i = record.get_next_free() - 1; i <= 0; i--)
+        // for (int i = record.get_next_free() - 1; i >= 0; i--)
+        for (int i = 0; i < record.get_max_elements(); i++)
           if (record[i]->get_name() == str_buff) {
             record[i]->show();
             if (Record_class::is_employee(record[i]))
-              std::cout << "I'm an employee!\n";
+              std::cout << "\tI'm an employee!\n";
             else
-              std::cout << "I'm a customer!\n";
+              std::cout << "\tI'm a customer!\n";
           }
+        std::getchar();
         break;
 
       case 4:
@@ -102,6 +104,7 @@ int main(void) {
         if (backup) {
           record = *backup;
           delete backup;
+          backup = NULL;
         }
         else
           std::cout << "We don't have a backup yet...\n";

@@ -1,7 +1,7 @@
 #include "../inc/Library_includes.h"
-#include "../inc/P_7_a_Employee_class.h"
-#include "../inc/P_7_a_Customer_class.h"
-#include "../inc/P_7_a_Record_class.h"
+#include "../inc/P_7_b_Employee_class.h"
+#include "../inc/P_7_b_Customer_class.h"
+#include "../inc/P_7_b_Record_class.h"
 
 Record_class::Record_class(int n_elms) : people{NULL}, max_elements{n_elms}, next_free{0} {
   if (n_elms <= 0)
@@ -70,12 +70,12 @@ Index_class* Record_class::operator[](int index) {
 
 void Record_class::free_record(void) {
   if (this->people) {
-      for (int i = 0; i < this->max_elements; i++)
-        if(this->people[i])
-          delete this->people[i];
-      delete[] this->people;
-      this->people = NULL;
-    }
+    for (int i = 0; i < this->max_elements; i++)
+      if(this->people[i])
+        delete this->people[i];
+    delete[] this->people;
+    this->people = NULL;
+  }
 }
 
 Record_class::~Record_class() {

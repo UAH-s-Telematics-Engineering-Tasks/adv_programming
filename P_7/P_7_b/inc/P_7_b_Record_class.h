@@ -1,6 +1,6 @@
 #include "Library_includes.h"
-#include "P_7_a_Employee_class.h"
-#include "P_7_a_Customer_class.h"
+#include "P_7_b_Employee_class.h"
+#include "P_7_b_Customer_class.h"
 
 #if !defined(_RECORD_CLASS_)
 #define _RECORD_CLASS_

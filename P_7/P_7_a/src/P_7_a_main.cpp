@@ -45,7 +45,7 @@ int main(void) {
   Record_class record(utils::General_utils::read_int("Number of people: "));
   Record_class* backup = NULL;
   int data_index = 0;
-  std::string str_buff;
+  std::string str_buff = "";
   /* This call is needed for each employee or customer. As it is going to be incredibly cumbersome to fill in the data during tests we are just going to "harcode" some values and pass them */
   /* Employee_class new_emp(utils::Cpp_utils::read_string(str_buff, "Name: "), utils::General_utils::read_int("Age: "), utils::General_utils::read_int("Hours: "), utils::General_utils::read_int("Minutes: "),
   utils::General_utils::read_int("Seconds: "),
@@ -115,6 +115,7 @@ int main(void) {
 
       case 7:
         if (backup) {
+          record.free_record();
           record = *backup;
           delete backup;
           backup = NULL;
@@ -124,6 +125,8 @@ int main(void) {
         break;
 
       case 8:
+        if (backup)
+          delete backup;
         return 0;
     }
 }

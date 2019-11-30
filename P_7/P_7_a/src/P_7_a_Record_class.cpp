@@ -4,10 +4,10 @@
 #include "../inc/P_7_a_Record_class.h"
 
 Record_class::Record_class(int n_elms) : people{NULL}, max_elements{n_elms}, next_free{0} {
+  //memset(this->people, 0, n_elms * sizeof(Index_class*));
   if (n_elms <= 0)
     std::cout << "Wrong value for the elements! Initializing people to NULL. Fill me in manually.\n";
   if ((this->people = new (std::nothrow) Index_class*[n_elms]))
-    //memset(this->people, 0, n_elms * sizeof(Index_class*));
     for (int i = 0; i < this->max_elements; i++)
       this->people[i] = NULL;
   else
@@ -20,13 +20,16 @@ Record_class::Record_class(const Record_class& init_obj) {
 
 Record_class& Record_class::operator=(const Record_class& init_obj) {
   if (this != &init_obj) {
-    // Delete the memory we have reserved up to now!
-    this->free_record();
+    /* Freeing the record here is okay if we are assigning an object that had some memory reserved already (i.e record = *backup). If we are bulding an object through the copy constructor we are making a mistake as we are trying to free memory based on the value of this->people within free_record()... That member hasn't been initialized yet! We could think that calling init_obj.free_record() or doing this->people = init_obj.people and then calling this->free_record() would do the trick. It would work if we wanted to free the assigned object but that's not the case with the copy constructor... We have no other alternative than to explicitly free the memory before the assignment if we want to implement the copy constructor through the assignment operator... As we don't know how to distinguish if the one calling the assignment operator is an object been built or one we have built already... */
+    //this->free_record();
     if (!(this->people = new (std::nothrow) Index_class*[init_obj.max_elements]))
       std::cout << "Error while copying...\n";
-    for (int i = 0; i < init_obj.max_elements; i++)
+    for (int i = 0; i < init_obj.max_elements; i++) {
       if (init_obj.people[i])
         this->people[i] = init_obj.people[i]->clone();
+      else
+        this->people[i] = NULL;
+    }
     this->max_elements = init_obj.max_elements;
     this->next_free = init_obj.next_free;
   }

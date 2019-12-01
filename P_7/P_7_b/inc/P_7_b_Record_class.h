@@ -7,20 +7,16 @@
 
 class Record_class {
   private:
-    Index_class** people;
-    int max_elements;
-    int next_free;
+    std::vector<Index_class*> people;
 
   public:
     Record_class(int = 0);
     Record_class(const Record_class&);
     Record_class& operator=(const Record_class&);
 
-    int get_max_elements(void) {return this->max_elements;}
-    int get_next_free(void) {return this->next_free;}
-    bool am_i_full(void);
-    bool add_person(Index_class*);
+    int get_entries(void);
 
+    bool add_person(Index_class*);
 
     void show_record(void);
     void show_employees(void);

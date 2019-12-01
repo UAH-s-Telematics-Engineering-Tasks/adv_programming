@@ -57,7 +57,7 @@ int main(void) {
         Employee_class new_emp(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", positions[data_index % DATA_SIZE], wrk_y[data_index % DATA_SIZE]);
         data_index++;
         if (record.add_person(&new_emp))
-          std::cout << "Current reocords: " << record.get_next_free();
+          std::cout << "Current reocords: " << record.get_entries();
         else
           std::cout << "I'm kind of full...";
         std::getchar();
@@ -68,7 +68,7 @@ int main(void) {
         Customer_class new_cust(names[data_index % DATA_SIZE], ages[data_index % DATA_SIZE], 12, 0, 0, "AM", DNIs[data_index % DATA_SIZE]);
         data_index++;
         if (record.add_person(&new_cust))
-          std::cout << "Current reocords: " << record.get_next_free();
+          std::cout << "Current reocords: " << record.get_entries();
         else
           std::cout << "I'm kind of full...";
         std::getchar();
@@ -76,13 +76,13 @@ int main(void) {
         break;
 
       case 3:
-        if (!record.get_next_free()) {
+        if (!record.get_entries()) {
           std::cout << "We have an empty record...";
           std::getchar();
           break;
         }
         utils::Cpp_utils::read_string(str_buff, "Name to look for: ");
-        for (int i = record.get_next_free() - 1; i >= 0; i--)
+        for (int i = 0; i < record.get_entries(); i++)
           if (record[i]->get_name() == str_buff) {
             record[i]->show();
             if (Record_class::is_employee(record[i]))
@@ -115,6 +115,7 @@ int main(void) {
 
       case 7:
         if (backup) {
+          record.free_record();
           record = *backup;
           delete backup;
           backup = NULL;
@@ -124,6 +125,8 @@ int main(void) {
         break;
 
       case 8:
+        if (backup)
+          delete backup;
         return 0;
     }
 }

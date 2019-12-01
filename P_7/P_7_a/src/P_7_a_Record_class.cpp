@@ -14,7 +14,7 @@ Record_class::Record_class(int n_elms) : people{NULL}, max_elements{n_elms}, nex
     std::cout << "Memory allocation error. Leaving max_elements with n_elms value";
 }
 
-Record_class::Record_class(const Record_class& init_obj) {
+Record_class::Record_class(const Record_class& init_obj) : people{NULL}, max_elements{0}, next_free{0} {
   *this = init_obj;
 }
 

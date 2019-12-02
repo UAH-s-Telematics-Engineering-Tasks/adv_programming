@@ -2,10 +2,17 @@
 #include "../inc/P_7_a_Employee_class.h"
 #include "../inc/P_7_a_Customer_class.h"
 #include "../inc/P_7_a_Record_class.h"
+#include "../inc/Exceptions.h"
 
 Record_class::Record_class(int n_elms) : people{NULL}, max_elements{n_elms}, next_free{0} {
   //memset(this->people, 0, n_elms * sizeof(Index_class*));
-  if (n_elms <= 0)
+  try {
+    if (n_elms <= 0)
+      throw wrong_n("The number of elements should be greater than 0!");
+  } catch(wrong_n& exc) {
+    std::cerr << exc.what() << '\n';
+  }
+  
     std::cout << "Wrong value for the elements! Initializing people to NULL. Fill me in manually.\n";
   if ((this->people = new (std::nothrow) Index_class*[n_elms]))
     for (int i = 0; i < this->max_elements; i++)

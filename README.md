@@ -1,7 +1,7 @@
 # Advanced Programming Practices by Pablo Collado Soto
 This repository contains all the code we've needed to write for the **Advanced Programming** course over at the **Universidad de Alcalá, Madrid, Spain**. We have gathered everything in a GitHub (:octocat) repository for several reasons:
 
-1. To keed a clean working environment enabling faster developing.
+1. To keep a clean working environment enabling faster developing.
 2. To practice managing a `git` repository.
 3. To use emojis :+1:
 

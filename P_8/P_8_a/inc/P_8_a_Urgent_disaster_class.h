@@ -19,7 +19,7 @@ class Urgent_disaster_class : public Disaster_class {
         void compute_budget(float = 0.5f, float = 0) override;
         void show (ostream& = std::cout) const override;
         Urgent_disaster_class* clone(void) const override;
-        float get_budget(void) const;
+        float get_budget(void) const override;
 };
 
 #endif

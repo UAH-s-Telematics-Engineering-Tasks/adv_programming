@@ -19,7 +19,7 @@ class CSiniestro {
         int get_code() const {return this->code;}
         float get_cost() const {return this->cost;}
         virtual void compute_budget(float, float) = 0;
-        virtual void show(ostream& = std::cout) const;
+        virtual void show(ostream& = std::cout) const = 0;
         virtual Disaster_class* clone() const = 0;
 
         virtual ~Disaster_class() {};

@@ -4,13 +4,14 @@
 #define __CONTRACT_CLASS__
 
 class Contract_class {
+    friend std::ostream& operator<<(std::ostream&, Contract_class&);
     private:
         int serial_number;
         std::string descr;
         std::string end_date;
         long policy;
         long purchase_value;
-        List_class<Disaster_class *> disasters;
+        List_class<Disaster_class*> disasters;
 
     public:
         Contract_class(int, const std::string& = "", const string& = "", long = 0, long = 0);

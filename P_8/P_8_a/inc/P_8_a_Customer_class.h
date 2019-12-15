@@ -1,7 +1,7 @@
-
-
 #if !defined(__CUSTOMER_CLAS__)
 #define __CUSTOMER_CLAS__
+
+#include "P_8_a_Contract_class.h"
 
 class Customer_class {
     private:
@@ -14,6 +14,10 @@ class Customer_class {
         void set_name(const std::string& n) {this->name = n;}
         std::string get_name(void) const {return this->name;}
         void add_contract(const Contract_class&);
+
+        operator long();
 };
+
+std::ostream& operator<<(std::ostream&, const Customer_class&);
 
 #endif

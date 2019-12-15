@@ -34,7 +34,7 @@ Our first steps in programming where with good ol' `C`. What we liked the most a
 
 ## Final notes
 
-No matter the problems you might encounter, rememeber that...
+No matter the problems you might encounter, remember that...
 
 <p align="center">
   <img src="./Memes/It_works.jpg">

@@ -2,9 +2,9 @@
 
 std::ostream& operator<<(std::ostream& o_s, const Customer_class& cust) {
     o_s << "Customer data:\n\tName: " << cust.get_name() << "\nContracts:\n";
-    o_s << this->contracts.get_first();
-    while(this->contracts.is_there_more())
-        o_s << this->contracts.get_curr();
+    o_s << cust.contracts.get_first();
+    while(cust.contracts.is_there_more())
+        o_s << cust.contracts.get_curr();
     return o_s;
 }
 

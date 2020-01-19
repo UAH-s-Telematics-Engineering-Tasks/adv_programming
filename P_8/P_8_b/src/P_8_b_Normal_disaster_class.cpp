@@ -1,4 +1,4 @@
-#include "../inc/P_8_a_Normal_disaster_class.h"
+#include "../inc/P_8_b_Normal_disaster_class.h"
 
 float Normal_disaster_class::worked_hour_price = 2.5;
 

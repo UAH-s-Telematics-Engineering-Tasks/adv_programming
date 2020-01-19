@@ -3,7 +3,7 @@
 #if !defined(__URGENT_DISASTER_CLASS__)
 #define __URGENT_DISASTER_CLASS__
 
-#include "P_8_a_Disaster_class.h"
+#include "P_8_c_Disaster_class.h"
 
 enum locations {
     local, national, international

@@ -1,4 +1,4 @@
-#include "../inc/P_8_a_Disaster_class.h"
+#include "../inc/P_8_c_Disaster_class.h"
 
 /* We need to initialize the attribute in the global scope so that we can access it from each and every method. It also needs to be static so that each object we instantiate uses a coherent value */
 int Disaster_class::next_code = 1;

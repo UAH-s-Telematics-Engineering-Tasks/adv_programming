@@ -2,14 +2,13 @@
 #define __CUSTOMER_CLAS__
 
 #include "Library_includes.h"
-#include "P_8_a_Contract_class.h"
-#include "P_8_a_List_class.h"
+#include "P_8_b_Contract_class.h"
 
 class Customer_class {
     friend std::ostream& operator<<(std::ostream&, const Customer_class&);
     private:
         std::string name;
-        List_class<Contract_class> contracts;
+        std::vector<Contract_class> contracts;
     
     public:
         Customer_class(const std::string& n = "No name") : name{n} {};

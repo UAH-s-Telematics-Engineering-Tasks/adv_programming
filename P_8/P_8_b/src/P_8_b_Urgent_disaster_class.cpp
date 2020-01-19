@@ -1,4 +1,4 @@
-#include "../inc/P_8_a_Urgent_disaster_class.h"
+#include "../inc/P_8_b_Urgent_disaster_class.h"
 
 float Urgent_disaster_class::urgency_cost = 5;
 float Urgent_disaster_class::worked_hour_price = 3.5;

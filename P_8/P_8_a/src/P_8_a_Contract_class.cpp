@@ -8,21 +8,27 @@ Contract_class::Contract_class(const Contract_class& in_obj) {
 
 Contract_class& Contract_class::operator=(const Contract_class& in_obj) {
     if (this != &in_obj) {
+        if (!this->disasters.am_i_empty())
+            this->delete_contracts();
         this->serial_number = in_obj.serial_number;
         this->descr = in_obj.descr;
         this->end_date = in_obj.end_date;
         this->policy = in_obj.policy;
         this->purchase_value = in_obj.purchase_value;
-        this->disasters = in_obj.disasters;
+        while(in_obj.disasters.is_there_more())
+            this->add_disaster(*in_obj.disasters.get_curr());
+        in_obj.disasters.restart();
     }
     return *this;
 }
 
-void Contract_class::add_disaster(Disaster_class& disaster) {
+/* Question 13: When calling this method we will call the clone() method for a reference to an Urgent_disaster. This will in turn call the copy constructor of the Urgent_disaster class. When it returns the address of the newly reserverd object we will then call the add_element method for a List from our template. This last method will call several methods itself: am_i_empty() and the copy construcor for the Node_class. Depending on the sate of the list we will also call set_next_node() and get_next_node()! */
+
+void Contract_class::add_disaster(const Disaster_class& disaster) {
     // Clone needs to be a virtual method so that we can invoke the method for
     // a reference to the base class and still clone the appropriate object. In
     // other words, we need virtual methods to implement polymorphism!
-    this->disasters.add_element(*(disaster.clone()))
+    this->disasters.add_element(disaster.clone());
 }
 
 void Contract_class::show_disasters(std::ostream& o_s) {
@@ -35,12 +41,16 @@ void Contract_class::show_disasters(std::ostream& o_s) {
     }
 }
 
+void Contract_class::delete_contracts(void) {
+    delete this->disasters.get_first();
+    while(this->disasters.is_there_more())
+        delete this->disasters.get_curr();
+    this->disasters.empty();
+}
+
 Contract_class::~Contract_class() {
-    if (!this->disasters.am_i_empty()) {
-        delete this->disasters.get_first();
-        while(this->disasters.is_there_more())
-            delete this->disasters.get_curr();
-    }
+    if (!this->disasters.am_i_empty())
+        this->delete_contracts();
 }
 
 std::ostream& operator<<(std::ostream& o_s, Contract_class& c) {

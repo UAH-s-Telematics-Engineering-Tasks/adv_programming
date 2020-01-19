@@ -1,7 +1,7 @@
 #if !defined(__NORMAL_DISASTER_CLASS__)
 #define __NORMAL_DISASTER_CLASS__
 
-#include "P_8_a_Disaster_class.h"
+#include "P_8_c_Disaster_class.h"
 
 class Normal_disaster_class : public Disaster_class {
     private:

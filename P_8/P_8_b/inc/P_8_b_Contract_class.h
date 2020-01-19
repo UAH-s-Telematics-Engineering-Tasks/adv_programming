@@ -1,20 +1,19 @@
 #if !defined(__CONTRACT_CLASS__)
 #define __CONTRACT_CLASS__
 
-#include "P_8_a_Normal_disaster_class.h"
-#include "P_8_a_Urgent_disaster_class.h"
-#include "P_8_a_Disaster_class.h"
-#include "P_8_a_List_class.h"
+#include "P_8_b_Normal_disaster_class.h"
+#include "P_8_b_Urgent_disaster_class.h"
+#include "P_8_b_Disaster_class.h"
 
 class Contract_class {
-    friend std::ostream& operator<<(std::ostream&, Contract_class&);
+    friend std::ostream& operator<<(std::ostream&, const Contract_class&);
     private:
         int serial_number;
         std::string descr;
         std::string end_date;
         long policy;
         long purchase_value;
-        List_class<Disaster_class*> disasters;
+        std::vector<Disaster_class*> disasters;
 
     public:
         Contract_class(int, const std::string& = "", const std::string& = "", long = 0, long = 0);
@@ -34,7 +33,7 @@ class Contract_class {
         long get_purchase_value(void) const {return this->purchase_value;}
 
         void add_disaster(const Disaster_class&);
-        void show_disasters(std::ostream& = std::cout);
+        void show_disasters(std::ostream& = std::cout) const;
 
         void delete_contracts(void);
 

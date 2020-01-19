@@ -1,5 +1,5 @@
-#include "../inc/P_8_a_List_class.h"
-#include "../inc/Exceptions.h"
+#include "../inc/P_8_a_Exceptions.h"
+#include "../inc/Library_includes.h"
 
 template <class T> List_class<T>::List_class() : first_elm{NULL}, curr_elm{NULL}, last_elm{NULL} {}
 
@@ -34,50 +34,32 @@ template <class T> void List_class<T>::add_element(const T& in_obj) {
 }
 
 template <class T> void List_class<T>::empty(void) {
-    Node_class<T>* tmp = this->first_elm;
+    Node_class<T>* tmp = this->first_elm, * aux = NULL;
     while(tmp) {
-        tmp = tmp->get_next_node();
+        aux = tmp->get_next_node();
         delete tmp;
+        tmp = aux;
     }
     this->first_elm = this->curr_elm = this->last_elm = NULL;
 }
 
-template <class T> void List_class<T>::restart(void) {
-    this->curr_elm = this->first_elm;
+template <class T> void List_class<T>::restart(void) const {
+    const_cast<List_class<T>*>(this)->curr_elm = this->first_elm;
 }
 
-template <class T> T& List_class<T>::get_curr(void) {
+template <class T> T& List_class<T>::get_curr(void) const {
     Node_class<T>* tmp = this->curr_elm;
-    // This const_cast removes the "constantness" of "this"
-    // const_cast<List_class<T>*>(this)->curr_elm = this->curr_elm->get_next_node();
-    this->curr_elm = this->curr_elm->get_next_node();
+    /* We need to remove the constantness with const_cast() or we won't be able to change any attributes... */
+    const_cast<List_class<T>*>(this)->curr_elm = this->curr_elm->get_next_node();
     return tmp->get_data();
 }
 
-template <class T> T& List_class<T>::get_first(void) {
-    // const_cast<List_class<T>*>(this)->curr_elm = this->first_elm->get_next_node();
-    this->curr_elm = this->first_elm->get_next_node();
+template <class T> T& List_class<T>::get_first(void) const {
+    const_cast<List_class<T>*>(this)->curr_elm = this->first_elm->get_next_node();
     return this->first_elm->get_data();
 }
 
 template <class T> T& List_class<T>::operator[](int index) {
-    // int n_elms = traversed_elms =  0;
-    // Node_class<T>* tmp = this->first_elm;
-    // while (tmp) {
-    //     n_elms++;
-    //     tmp = tmp->get_next_node();
-    // }
-    // tmp = this->first_elm;
-    // if (index < 0 || index > n_elms - 1)
-    //     throw incorrect_index_ex("The index is out of bounds...");
-    // else {
-    //     while (tmp) {
-    //         if (traversed_elms + 1 == index)
-    //             return tmp->get_data();
-    //         tmp = tmp->get_next_node();
-    //         traversed_elms++;
-    //     }
-    // }
     Node_class<T>* tmp = this->first_elm;
     int traversed_elms = 0;
     if (index >= 0) {
@@ -87,13 +69,13 @@ template <class T> T& List_class<T>::operator[](int index) {
             tmp = tmp->get_next_node();
             traversed_elms++;
         }
-        throw incorrect_index_ex("Index out of bounds...")
+        throw incorrect_index_ex("Index " + std::to_string(index) + " is out of bounds...");
     }
     else
-        throw incorrect_index_ex("The index should be greater than 0...")
+        throw incorrect_index_ex("The index should be greater than 0...");
 }
 
-template <class T> List_class::~List_class() {
+template <class T> List_class<T>::~List_class() {
     if (!this->am_i_empty())
         this->empty();
 }
